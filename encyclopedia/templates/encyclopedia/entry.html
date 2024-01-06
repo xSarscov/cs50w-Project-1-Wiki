@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    
+    {% if entry %}
+        {{ entry|safe }}
+    {% else %}
+        <h1>
+            {{error}}
+        </h1>
+    {% endif %}
+
+{% endblock %}
