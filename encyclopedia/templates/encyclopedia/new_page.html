@@ -1,0 +1,40 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    
+    <form method="post" class="d-flex flex-column gap-3 justify-content-center">
+        {% csrf_token %}
+        <label for="{{ form.title.id_for_label }}">Title:</label>
+        {{ form.title }}
+
+        {% if form.title.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                {{ form.title.errors | striptags }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+
+        <label for="{{ form.content.id_for_label }}">Content:</label>
+        {{ form.content }}
+
+        {% if form.content.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                {{ form.content.errors | striptags }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary align-self-end">Create entry</button>
+    </form>
+
+
+</div>
+
+
+{% endblock %}

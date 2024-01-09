@@ -1,11 +1,21 @@
 {% extends "encyclopedia/layout.html" %}
 
 {% block title %}
-    Encyclopedia
+    {{ query }} | Encyclopedia
 {% endblock %}
 
 {% block body %}
-    <h1>Entries related to {{ si }}</h1>
-    
+    {% if matches %}
+    <h1>Entries related to: {{ query }}</h1>
+    <ul>
+        {% for entry in matches %}
+            <li>
+                <a href="{% url 'entries' entry %}">{{ entry }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h1>{{ error }}</h1>
+    {% endif %}
 
 {% endblock %}

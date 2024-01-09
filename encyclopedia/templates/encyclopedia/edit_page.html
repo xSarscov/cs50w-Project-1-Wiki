@@ -1,0 +1,31 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Edit {{ title }} page | Encyclopedia
+{% endblock %}
+
+{% block body %}
+
+    {% if form %}
+        <div class="container">
+            <form method="post" class="d-flex flex-column gap-3 justify-content-center">
+                {% csrf_token %}
+                <label for="{{ form.content.id_for_label }}">Content:</label>
+                {{ form.content }}
+                <button type="submit" class="btn btn-primary align-self-end">Save changes</button>
+            </form>
+        </div>
+
+        {% if form.content.errors %}
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            {{ form.content.errors | striptags }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+
+    {% else %}
+        <h1>No matching entries found for the given query: {{ title }}</h1>
+    {% endif %}
+
+
+{% endblock %}

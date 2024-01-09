@@ -7,9 +7,15 @@
 {% block body %}
     <h1>All Pages</h1>
     <ul>
-        {% for entry in entries %}
-            <li> <a href="{% url 'entries' entry %}">{{ entry }}</a></li>
-        {% endfor %}
+        {% if entries %}
+            {% for entry in entries %}
+                <li class="">
+                    <a href="{% url 'entries' entry %}" class="me-5">{{ entry }}</a>
+                </li>
+            {% endfor %}
+            {% else %}
+            <h2>No entries found. Please check back later or add new entries.</h2>
+        {% endif %}
     </ul>
 
 {% endblock %}

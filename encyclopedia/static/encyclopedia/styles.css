@@ -40,3 +40,23 @@ textarea {
 .row {
     margin-right: 0;
 }
+
+#id_title {
+    max-width: 500px;
+}
+
+#id_content {
+    max-height: 600px;
+}
+
+.overlay {
+    svg {
+        display: none;
+    }
+}
+
+.overlay:hover {
+    svg {
+        display: block;
+    }
+}
