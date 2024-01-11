@@ -14,7 +14,6 @@ def entries(request, TITLE):
 
     if request.method == 'GET':
         entry = util.get_entry(TITLE)
-
         if entry is not None:
 
             # Markdown to HTML Conversion
@@ -65,11 +64,16 @@ def new_page(request):
             title = form.cleaned_data['title']
             content = form.cleaned_data['content']
 
+            if title in util.list_entries():
+                return render(request, "encyclopedia/new_page.html", {
+                "form": form,
+                "error": "An entry with the provided title already exists. Please choose a different title."
+            })
+
             util.save_entry(title, content)
             
             return redirect('entries', TITLE=title)
         else:
-            print(form.errors)
             return render(request, "encyclopedia/new_page.html", {
                 "form": form
             })
